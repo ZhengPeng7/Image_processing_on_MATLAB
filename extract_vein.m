@@ -1,6 +1,8 @@
 function [img] = extract_vein(BW)
+	%目的: 去噪, 提取出叶脉.
+	%步骤: 1. canny算子去噪 -> 2. sobel算子去噪 -> 3. 两者做与运算 
+	%-> 4. 进行形态学处理 -> 5. 利用eliminate_the_acnode去除离散噪声 -> 6. 平滑滤波 -> 7. 提高亮度, 二值化处理 -> 8. imshow.
 
-	% BW = imread(strcat(pwd,'.\Leaves_UMU\10.jpg'));   %读入图像的具体位置
 	BW=rgb2gray(BW);      
 	thresh=[0.1,0.2]; %阈值设置根据图像自定义范围   
 	sigma=1;%定义高斯参数，1-3     
